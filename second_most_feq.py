@@ -5,20 +5,14 @@ def second_most_frequent(text):
             freq[i]+=1
         else:
             freq[i]=1
-    high_feq=0
-    second_most_frequent=None
-    for i in freq.values():
-        if i>high_feq:
-            second_most_frequent=high_feq
-            high_feq=i
-        elif i!=high_feq and i>second_most_frequent:
-            second_most_frequent=i
+
+    frequencies = sorted(set(freq.values()), reverse=True)
+    if len(frequencies)<2:
+        return None
+    second_most_frequent=frequencies[1]
+    for char, count in freq.items():
+        if count== second_most_frequent:
+            return char
         
-    
-
-    
-    
-
-    return second_most_frequent
 
 print(second_most_frequent("aaaabccc"))
